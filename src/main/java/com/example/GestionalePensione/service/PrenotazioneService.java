@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 public class PrenotazioneService {
 
     private final PrenotazioneRepository prenotazioneRepository;
-
     public PrenotazioneService(PrenotazioneRepository prenotazioneRepository) {
         this.prenotazioneRepository = prenotazioneRepository;
     }

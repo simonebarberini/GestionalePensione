@@ -5,6 +5,8 @@ import com.example.GestionalePensione.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ClienteService {
 
@@ -16,8 +18,19 @@ public class ClienteService {
     }
 
     public Cliente salvaCliente(Cliente cliente) {
-        return clienteRepository.save(cliente);
+        Optional<Cliente> clienteEsistente = clienteRepository.findByNomeAndCognome(
+                cliente.getNome(), cliente.getCognome()
+        );
+
+        if (clienteEsistente.isPresent()) {
+            System.out.println("Cliente esistente trovato: " + clienteEsistente.get().getId());
+            return clienteEsistente.get();
+        } else {
+            System.out.println("Creazione di un nuovo cliente: " + cliente.getNome() + " " + cliente.getCognome());
+            return clienteRepository.save(cliente);
+        }
     }
+
 
     public Cliente getClienteById(Long id) {
         return clienteRepository.findById(id).orElseThrow(()-> new RuntimeException("Cliente non trovato"));

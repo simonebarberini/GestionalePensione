@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @JsonIdentityInfo(
@@ -19,10 +21,22 @@ public class Cliente {
 
     private String nome;
     private String cognome;
-    private String nomeCane;
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Prenotazione> prenotazioni;
+    private List<Prenotazione> prenotazioni = new ArrayList<>();
+
+
+    public void aggiungiPrenotazione(Prenotazione prenotazione) {
+        prenotazioni.add(prenotazione);
+        prenotazione.setCliente(this); // Imposta la relazione bidirezionale
+    }
+
+    public void rimuoviPrenotazione(Prenotazione prenotazione) {
+        prenotazioni.remove(prenotazione);
+        prenotazione.setCliente(null);
+    }
+
+
 
     public String getNome() {
         return nome;
@@ -40,13 +54,13 @@ public class Cliente {
         this.id = id;
     }
 
-    public String getNomeCane() {
-        return nomeCane;
-    }
-
-    public void setNomeCane(String nomeCane) {
-        this.nomeCane = nomeCane;
-    }
+//    public String getNomeCane() {
+//        return nomeCane;
+//    }
+//
+//    public void setNomeCane(String nomeCane) {
+//        this.nomeCane = nomeCane;
+//    }
 
     public String getCognome() {
         return cognome;

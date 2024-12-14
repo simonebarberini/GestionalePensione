@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
+import org.hibernate.mapping.ToOne;
+
 import java.time.LocalDate;
 
 @JsonIdentityInfo(
@@ -20,11 +22,21 @@ public class Prenotazione {
 
     private LocalDate dataInizioPrenotazione;
     private LocalDate dataFinePrenotazione;
+    private String nomeCane;
+
     private String box;
 
-    @ManyToOne
+    @ManyToOne(fetch =  FetchType.LAZY)
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
+
+    public String getNomeCane() {
+        return nomeCane;
+    }
+
+    public void setNomeCane(String nomeCane) {
+        this.nomeCane = nomeCane;
+    }
 
     public Cliente getCliente() {
         return cliente;

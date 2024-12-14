@@ -1,10 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Nuova Prenotazione</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: auto;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, select, button {
+            display: block;
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .section-title {
+            margin-top: 20px;
+            font-size: 18px;
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
+<h1>Inserisci una Nuova Prenotazione</h1>
 
+<form th:action="@{/api/prenotazioni/salvaPrenotazione}" method="post">
+    <!-- Sezione Cliente -->
+    <div class="section-title">Dati del Cliente</div>
+    <label for="nome">Nome</label>
+    <input type="text" id="nome" name="cliente.nome" placeholder="Inserisci il nome" required="true">
+
+    <label for="cognome">Cognome</label>
+    <input type="text" id="cognome" name="cliente.cognome" placeholder="Inserisci il cognome" required="true">
+
+    <label for="nomeCane">Nome del Cane</label>
+    <input type="text" id="nomeCane" name="nomeCane" placeholder="Inserisci il nome del cane" required="true">
+
+    <!-- Sezione Prenotazione -->
+    <div class="section-title">Dati della Prenotazione</div>
+    <label for="dataInizioPrenotazione">Data Inizio Prenotazione</label>
+    <input type="date" id="dataInizioPrenotazione" name="dataInizioPrenotazione" required="true">
+
+    <label for="dataFinePrenotazione">Data Fine Prenotazione</label>
+    <input type="date" id="dataFinePrenotazione" name="dataFinePrenotazione" required="true">
+
+    <label for="box">Box</label>
+    <select id="box" name="box" required>
+        <option value="Box1">Box1</option>
+        <option value="Box2">Box2</option>
+        <option value="Box3">Box3</option>
+        <option value="Box4">Box4</option>
+    </select>
+
+    <button type="submit">Salva Prenotazione</button>
+</form>
 </body>
 </html>
