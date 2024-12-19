@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Lista Prenotazioni</title>
+  <link rel="stylesheet" type="text/css" href="/static/listaStyles.css">
+</head>
+<body>
+<h1>Lista Prenotazioni</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Nome Cliente</th>
+    <th>Numero Cani</th>
+    <th>Data Inizio</th>
+    <th>Data Fine</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="prenotazione : ${prenotazioni}">
+    <td th:text="${prenotazione.nomeCliente}">Nome Cliente</td>
+    <td th:text="${prenotazione.numeroCani}">Numero Cani</td>
+    <td th:text="${prenotazione.dataInizio}">Data Inizio</td>
+    <td th:text="${prenotazione.dataFine}">Data Fine</td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

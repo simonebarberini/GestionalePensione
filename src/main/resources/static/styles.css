@@ -1,0 +1,43 @@
+ body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(120deg, #f6d365, #fda085);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #333;
+    }
+
+    /* Contenitore principale */
+    .container {
+      text-align: center;
+      background: #ffffff;
+      padding: 20px 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Stile per l'intestazione */
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #555;
+    }
+
+    /* Stile per il pulsante */
+    button {
+      background-color: #4caf50; /* Verde */
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #45a049; /* Verde scuro */
+      transform: scale(1.05);
+    }
