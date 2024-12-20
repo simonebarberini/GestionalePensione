@@ -28,7 +28,7 @@ public class PrenotazioneController {
     }
 
     @PostMapping("/nuovaPrenotazione")
-    public void addPrenotazione(@RequestParam String nomeCliente, @RequestParam int numeroCani, @RequestParam LocalDate dataInizio, @RequestParam LocalDate dataFine, Model model){
+    public void addPrenotazione(@RequestParam String nomeCliente, @RequestParam int numeroCani, @RequestParam LocalDate dataInizio, @RequestParam LocalDate dataFine){
 
         int disponibilita = disponibilitaService.verificaDisponibilita(dataInizio, dataFine, NUMERO_BOX);
 
