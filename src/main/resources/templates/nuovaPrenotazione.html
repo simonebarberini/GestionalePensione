@@ -2,11 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Inserisci Prenotazione</title>
+  <script>
+    function showAlert(message) {
+        alert(message);
+    }
+  </script>
   <link rel="stylesheet" type="text/css" href="/static/nuovaPrenotazioneStyle.css">
 </head>
 <body>
 <h1>Inserisci Prenotazione</h1>
-<form action="/inserisciPrenotazione" method="POST">
+
+<!-- Alert per messaggio di errore -->
+<div th:if="${errore}" th:attr="onload=|showAlert('${errore}')|"></div>
+
+<form action="/nuovaPrenotazione" method="POST">
   <label for="nomeCliente">Nome Cliente:</label>
   <input type="text" id="nomeCliente" name="nomeCliente" placeholder="Inserisci il nome del cliente" required>
 
