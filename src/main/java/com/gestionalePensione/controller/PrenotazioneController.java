@@ -28,9 +28,9 @@ public class PrenotazioneController {
     }
 
     @PostMapping("/nuovaPrenotazione")
-    public void addPrenotazione(@RequestParam String nomeCliente, @RequestParam int numeroCani, @RequestParam LocalDate dataInizio, @RequestParam LocalDate dataFine){
+    public void addPrenotazione(@RequestParam String nomeCliente, @RequestParam int numeroCani, @RequestParam String dataInizio, @RequestParam String dataFine){
 
-        int disponibilita = disponibilitaService.verificaDisponibilita(dataInizio, dataFine, NUMERO_BOX);
+        int disponibilita = disponibilitaService.verificaDisponibilita(LocalDate.parse(dataInizio), LocalDate.parse(dataFine), NUMERO_BOX);
 
         if (disponibilita<=0){
             throw new RuntimeException("Non ci sono box disponibili in queste date");
@@ -38,14 +38,14 @@ public class PrenotazioneController {
         Prenotazione prenotazione = new Prenotazione();
         prenotazione.setNomeCliente(nomeCliente);
         prenotazione.setNumeroCani(numeroCani);
-        prenotazione.setDataInizio(dataInizio);
-        prenotazione.setDataFine(dataFine);
+        prenotazione.setDataInizio(LocalDate.parse(dataInizio));
+        prenotazione.setDataFine(LocalDate.parse(dataFine));
         prenotazioneService.addPrenotazione(prenotazione);
     }
 
     @GetMapping("/verificaDisponibilita")
-    public Integer getDisponibilita(@RequestParam LocalDate dataInizio, @RequestParam LocalDate dataFine){
-        return disponibilitaService.verificaDisponibilita(dataInizio, dataFine, NUMERO_BOX);
+    public Integer getDisponibilita(@RequestParam String dataInizio, @RequestParam String dataFine){
+        return disponibilitaService.verificaDisponibilita(LocalDate.parse(dataInizio), LocalDate.parse(dataFine), NUMERO_BOX);
     }
 
 
