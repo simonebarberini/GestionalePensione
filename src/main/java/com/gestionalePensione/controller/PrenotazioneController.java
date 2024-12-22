@@ -43,5 +43,10 @@ public class PrenotazioneController {
         prenotazioneService.addPrenotazione(prenotazione);
     }
 
+    @GetMapping("verificaDisponibilita")
+    public Integer getDisponibilita(@RequestParam LocalDate dataInizio, @RequestParam LocalDate dataFine){
+        return disponibilitaService.verificaDisponibilita(dataInizio, dataFine, NUMERO_BOX);
+    }
+
 
 }
