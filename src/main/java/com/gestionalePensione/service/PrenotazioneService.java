@@ -17,6 +17,19 @@ public class PrenotazioneService {
     }
 
     public void addPrenotazione(Prenotazione prenotazione) {
-        prenotazioneRepo.save(prenotazione);
+        try {
+            prenotazioneRepo.save(prenotazione);
+        }catch (Exception e){
+            throw new RuntimeException("Non é stato possibile salvare la prenotazione");
+        }
+
+    }
+
+    public void eliminaPrenotazione(String id) {
+        try {
+            prenotazioneRepo.deleteById(id);
+        }catch (IllegalArgumentException e){
+            throw new RuntimeException("Non é stato possibile eliminare la prenotazione");
+        }
     }
 }

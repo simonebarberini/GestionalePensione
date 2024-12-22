@@ -42,4 +42,6 @@ public class DisponibilitaService {
 
         return boxTotali - massimoBoxOccupati;
     }
+
+
 }

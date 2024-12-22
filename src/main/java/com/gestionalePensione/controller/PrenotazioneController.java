@@ -3,6 +3,7 @@ package com.gestionalePensione.controller;
 import com.gestionalePensione.model.Prenotazione;
 import com.gestionalePensione.service.DisponibilitaService;
 import com.gestionalePensione.service.PrenotazioneService;
+import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -40,12 +41,27 @@ public class PrenotazioneController {
         prenotazione.setNumeroCani(numeroCani);
         prenotazione.setDataInizio(LocalDate.parse(dataInizio));
         prenotazione.setDataFine(LocalDate.parse(dataFine));
-        prenotazioneService.addPrenotazione(prenotazione);
+        try {
+            prenotazioneService.addPrenotazione(prenotazione);
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @GetMapping("/verificaDisponibilita")
     public Integer getDisponibilita(@RequestParam String dataInizio, @RequestParam String dataFine){
         return disponibilitaService.verificaDisponibilita(LocalDate.parse(dataInizio), LocalDate.parse(dataFine), NUMERO_BOX);
+    }
+
+    @DeleteMapping("/eliminaPrenotazione")
+    public void eliminaPrenotazione(@RequestParam String id){
+        try {
+            prenotazioneService.eliminaPrenotazione(id);
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 
