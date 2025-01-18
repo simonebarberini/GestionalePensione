@@ -57,7 +57,7 @@ public class PrenotazioneController {
     @DeleteMapping("/eliminaPrenotazione")
     public void eliminaPrenotazione(@RequestParam String id){
         try {
-            prenotazioneService.eliminaPrenotazione(id);
+            prenotazioneService.eliminaPrenotazione(d);
         } catch (RuntimeException e) {
             throw new RuntimeException(e);
         }
